@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { API_KEY, API_URL } from "../src/config/config";
-import { IOutages, ISiteInfo } from "../src/types/types";
+import { IOutage, ISiteInfo } from "../src/types/types";
 import { getOutages, getSiteInfo, postSiteOutages } from "./api/api";
 import {
   attachDeviceNameToOutage,
@@ -19,7 +19,7 @@ async function main() {
   const siteId = "norwich-pear-tree";
 
   try {
-    const outages: IOutages[] = await getOutages(API_URL, header);
+    const outages: IOutage[] = await getOutages(API_URL, header);
     const siteInfos: ISiteInfo = await getSiteInfo(API_URL, header, siteId);
     console.log("siteinfos: ", siteInfos);
     const timeFiltered = filterByTime(targetTime, outages);
