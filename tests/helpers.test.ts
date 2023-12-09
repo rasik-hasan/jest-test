@@ -1,6 +1,13 @@
 import { IDevice, IOutage } from "../src/types/types";
-import { calculateSum, filterById, filterByTime } from "../src/utils/helpers";
 import {
+  attachDeviceNameToOutage,
+  calculateSum,
+  filterById,
+  filterByTime,
+} from "../src/utils/helpers";
+import {
+  attachDeviceNameResult,
+  attachDeviceNameResultWithEmptyDevicesArray,
   filterByIdResult,
   filterByTimeResult,
   testDevices,
@@ -74,5 +81,31 @@ describe("filter by time", () => {
     const result: IOutage[] = [];
 
     expect(filterByTime(param1, param2)).toEqual(result);
+  });
+});
+
+describe("attachDeviceNameToOutage", () => {
+  it("attaches name correctly", () => {
+    const param1 = filterByIdResult;
+    const param2 = testDevices;
+    const result = attachDeviceNameResult;
+
+    expect(attachDeviceNameToOutage(param1, param2)).toEqual(result);
+  });
+
+  it("Should handle empty first array", () => {
+    const param1: IOutage[] = [];
+    const param2 = testDevices;
+    const result: IOutage[] = [];
+
+    expect(attachDeviceNameToOutage(param1, param2)).toEqual(result);
+  });
+
+  it("Should handle empty second array", () => {
+    const param1 = filterByIdResult;
+    const param2: IDevice[] = [];
+    const result = attachDeviceNameResultWithEmptyDevicesArray;
+
+    expect(attachDeviceNameToOutage(param1, param2)).toEqual(result);
   });
 });
