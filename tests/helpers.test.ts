@@ -1,5 +1,11 @@
 import { calculateSum } from "../src/utils/helpers";
 
-test("string with a single number should", () => {
-  expect(calculateSum(1, 2)).toBe(3);
+describe("testing calculate sum", () => {
+  it("adding two numbers correctly", () => {
+    const param1 = 1;
+    const param2 = 10;
+    const expectedResult = 11;
+
+    expect(calculateSum(param1, param2)).toBe(expectedResult);
+  });
 });
