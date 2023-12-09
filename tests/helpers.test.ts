@@ -3,6 +3,7 @@ import { calculateSum, filterById, filterByTime } from "../src/utils/helpers";
 import {
   filterByIdResult,
   filterByTimeResult,
+  simpleTimeArrayData,
   testDevices,
   testOutages,
 } from "./testData";
@@ -56,6 +57,22 @@ describe("filter by time", () => {
     const param1 = "2022-01-01T00:00:00.000Z";
     const param2 = testOutages;
     const result = filterByTimeResult;
+
+    expect(filterByTime(param1, param2)).toEqual(result);
+  });
+
+  it("handles empty array", () => {
+    const param1 = "2022-01-01T00:00:00.000Z";
+    const param2: IOutage[] = [];
+    const result: IOutage[] = [];
+
+    expect(filterByTime(param1, param2)).toEqual(result);
+  });
+
+  it("handles invalid time string", () => {
+    const param1 = "abasd";
+    const param2 = testOutages;
+    const result: IOutage[] = [];
 
     expect(filterByTime(param1, param2)).toEqual(result);
   });
