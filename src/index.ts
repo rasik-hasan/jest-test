@@ -21,17 +21,16 @@ async function main() {
   try {
     const outages: IOutage[] = await getOutages(API_URL, header);
     const siteInfos: ISiteInfo = await getSiteInfo(API_URL, header, siteId);
-    console.log("siteinfos: ", siteInfos);
     const timeFiltered = filterByTime(targetTime, outages);
     // console.log("timefiltered: ", timeFiltered);
     const deviceFiltered = filterById(timeFiltered, siteInfos.devices);
-    console.log("device filtered: ", deviceFiltered);
+    // console.log("device filtered: ", deviceFiltered);
 
     const nameAttached = attachDeviceNameToOutage(
       deviceFiltered,
       siteInfos.devices
     );
-    console.log("attach: ", nameAttached);
+    // console.log("attach: ", nameAttached);
 
     postSiteOutages(API_URL, header, nameAttached, siteId);
   } catch (error) {

@@ -1,6 +1,11 @@
 import { IDevice, IOutage } from "../src/types/types";
-import { calculateSum, filterById } from "../src/utils/helpers";
-import { filterByIdResult, testDevices, testOutages } from "./testData";
+import { calculateSum, filterById, filterByTime } from "../src/utils/helpers";
+import {
+  filterByIdResult,
+  filterByTimeResult,
+  testDevices,
+  testOutages,
+} from "./testData";
 
 describe("testing calculate sum", () => {
   it("adding two numbers correctly", () => {
@@ -42,6 +47,16 @@ describe("testing filterbyId", () => {
     const param2: IDevice[] = testDevices;
     const result: IOutage[] = [];
 
-    expect(filterById(param1, param2)).toEqual([]);
+    expect(filterById(param1, param2)).toEqual(result);
+  });
+});
+
+describe("filter by time", () => {
+  it("filter by time correctly", () => {
+    const param1 = "2022-01-01T00:00:00.000Z";
+    const param2 = testOutages;
+    const result = filterByTimeResult;
+
+    expect(filterByTime(param1, param2)).toEqual(result);
   });
 });
