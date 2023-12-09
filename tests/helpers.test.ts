@@ -3,7 +3,6 @@ import { calculateSum, filterById, filterByTime } from "../src/utils/helpers";
 import {
   filterByIdResult,
   filterByTimeResult,
-  simpleTimeArrayData,
   testDevices,
   testOutages,
 } from "./testData";
