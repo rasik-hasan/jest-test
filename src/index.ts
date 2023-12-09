@@ -2,43 +2,17 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import axios from "axios";
+import { IOutages, IDevices, ISiteInfo, ISiteOutage } from "../src/types/types";
+import { API_URL, API_KEY } from "../src/config/config";
 
-const apiKey = process.env.API_KEY;
-console.log(`API Key: ${apiKey}`);
-
-const apiURL = "https://api.krakenflex.systems/interview-tests-mock-api/v1";
 const header = {
-  "x-api-key": apiKey,
+  "x-api-key": API_KEY,
 };
-
-interface IOutages {
-  id: string;
-  begin: string;
-  end: string;
-}
-
-interface IDevices {
-  id: string;
-  name: string;
-}
-
-interface ISiteInfo {
-  id: string;
-  name: string;
-  devices: [IDevices];
-}
-
-interface ISiteOutage {
-  id: string;
-  name: string;
-  begin: string;
-  end: string;
-}
 
 // 1. `GET /outages` which returns all outages in our system
 async function getOutages() {
   try {
-    const res = await axios.get(apiURL + "/outages", {
+    const res = await axios.get(API_URL + "/outages", {
       headers: header,
     });
     // console.log("Res:", res.data);
@@ -52,7 +26,7 @@ async function getOutages() {
 // 2. `GET /site-info/{siteId}` which returns specific information about a site
 async function getSiteInfo(siteId: string): Promise<any> {
   try {
-    const res = await axios.get(apiURL + `/site-info/${siteId}`, {
+    const res = await axios.get(API_URL + `/site-info/${siteId}`, {
       headers: header,
     });
 
@@ -99,7 +73,7 @@ function attachDeviceNameToOutage(outages: IOutages[], devices: IDevices[]) {
 async function postSiteOutages(siteOutages: ISiteOutage[], siteId: string) {
   try {
     const res = await axios.post(
-      apiURL + `/site-outages/${siteId}`,
+      API_URL + `/site-outages/${siteId}`,
       siteOutages,
       { headers: header }
     );
