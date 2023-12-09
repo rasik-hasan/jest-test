@@ -12,7 +12,7 @@ import {
   filterByTimeResult,
   testDevices,
   testOutages,
-} from "./testData";
+} from "../src/sampleData/testData";
 
 describe("testing calculate sum", () => {
   it("adding two numbers correctly", () => {
