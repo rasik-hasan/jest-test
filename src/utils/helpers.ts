@@ -35,3 +35,7 @@ export function attachDeviceNameToOutage(
 
   return attached;
 }
+
+export function calculateSum(first: number, second: number) {
+  return first + second;
+}
