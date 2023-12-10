@@ -4,8 +4,8 @@ import { IOutage, ISiteInfo, ISiteOutage } from "../src/types/types";
 
 jest.mock("axios");
 
-describe("testing get Outages", () => {
-  it("testing basic data fetching", async () => {
+describe("testing getOutages", () => {
+  it("tests basic data fetching", async () => {
     const param1 = "https://api.test.com/dev";
     const param2 = {
       "x-api-key": "testKey",
@@ -26,7 +26,7 @@ describe("testing get Outages", () => {
     });
   });
 
-  it("resilient in one failed attempt", async () => {
+  it("tests with one failed attempt", async () => {
     const param1 = "https://api.test.com/dev";
     const param2 = {
       "x-api-key": "testKey",
@@ -49,7 +49,7 @@ describe("testing get Outages", () => {
     });
   });
 
-  it("3 attempts failed", async () => {
+  it("tests all attempts failed", async () => {
     const param1 = "https://api.test.com/dev";
     const param2 = {
       "x-api-key": "testKey",
@@ -68,7 +68,7 @@ describe("testing get Outages", () => {
 });
 
 describe("testing getSiteInfo", () => {
-  it("testing basic data fetching", async () => {
+  it("tests basic data fetching", async () => {
     const param1 = "https://api.test.com/dev";
     const param2 = {
       "x-api-key": "testKey",
@@ -90,7 +90,7 @@ describe("testing getSiteInfo", () => {
     });
   });
 
-  it("resilient in one failed attempt", async () => {
+  it("tests with one failed attempt", async () => {
     const param1 = "https://api.test.com/dev";
     const param2 = {
       "x-api-key": "testKey",
@@ -114,7 +114,7 @@ describe("testing getSiteInfo", () => {
     });
   });
 
-  it("3 attempts failed", async () => {
+  it("tests all attempts failed", async () => {
     const param1 = "https://api.test.com/dev";
     const param2 = {
       "x-api-key": "testKey",
@@ -161,7 +161,7 @@ describe("testing postSiteOutages", () => {
     );
   });
 
-  it("resilient in one failed attempt", async () => {
+  it("tests with one failed attempt", async () => {
     const param1 = "https://api.test.com/dev";
     const param2 = {
       "x-api-key": "testKey",
@@ -190,7 +190,7 @@ describe("testing postSiteOutages", () => {
     );
   });
 
-  it("3 attempts failed", async () => {
+  it("tests all attempts failed", async () => {
     const param1 = "https://api.test.com/dev";
     const param2 = {
       "x-api-key": "testKey",
