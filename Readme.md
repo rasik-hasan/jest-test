@@ -1,12 +1,17 @@
 ## About API KEY
 
-System details:
+# System details:
 
 1. Node -v 18.16.1
 2. npm -v 9.5.1
 3. May need typescript and ts-node installed globally
 
-Notes:
+# Running the project:
+
+1. To run the project , run "npm start"
+2. To run tests , run "npm run test
+
+# Notes:
 
 1. Normally the .env file should not be committed to git, but for ease of use in this demo, it is being committed.
 
