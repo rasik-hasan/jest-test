@@ -26,3 +26,5 @@
 6. Running the tests takes a bit of time, please be patient and let it run.
 
 7. Added console logs in the functions just to show that the code is running and for dramatic purposes only.
+
+8. I used the example data provided as test data, I hope it's okay.

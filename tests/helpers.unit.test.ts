@@ -76,7 +76,7 @@ describe("filter by time", () => {
   });
 
   it("handles invalid time string", () => {
-    const param1 = "abasd";
+    const param1 = "time";
     const param2 = testOutages;
     const result: IOutage[] = [];
 
