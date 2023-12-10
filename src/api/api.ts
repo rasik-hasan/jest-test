@@ -6,6 +6,7 @@ export async function getOutages(
   API_URL: string,
   header: {}
 ): Promise<IOutage[]> {
+  console.log("Requesting Outages..");
   const tryMax = 3;
   const delayMultiplier = 500;
   let tryCounter = 0;
@@ -36,6 +37,7 @@ export async function getSiteInfo(
   header: {},
   siteId: string
 ): Promise<ISiteInfo> {
+  console.log("Requesting SiteInfos..");
   const tryMax = 3;
   const delayMultiplier = 500;
   let tryCounter = 0;
@@ -68,6 +70,7 @@ export async function postSiteOutages(
   siteOutages: ISiteOutage[],
   siteId: string
 ) {
+  console.log("Posting Site Outages");
   const tryMax = 3;
   const delayMultiplier = 500;
   let tryCounter = 0;

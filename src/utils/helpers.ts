@@ -3,6 +3,7 @@
 import { IOutage, IDevice, ISiteOutage } from "../types/types";
 
 export function filterByTime(time: string, data: IOutage[]) {
+  console.log("Filtering by time..");
   const filtered = data.filter((item: IOutage) => {
     const startDate = new Date(item.begin);
     const targetDate = new Date(time);
@@ -15,6 +16,7 @@ export function filterByTime(time: string, data: IOutage[]) {
 
 //2.2 filter out outages that don't have devices in the list of devices in site info
 export function filterById(outages: IOutage[], devices: IDevice[]) {
+  console.log("Filtering by deviceId..");
   const deviceIds = devices.map((device) => device.id);
   const filtered = outages.filter((outage) => deviceIds.includes(outage.id));
   return filtered;
@@ -25,6 +27,7 @@ export function attachDeviceNameToOutage(
   outages: IOutage[],
   devices: IDevice[]
 ) {
+  console.log("Attaching device names..");
   const attached: ISiteOutage[] = outages.map((outage) => {
     const device = devices.find((device) => outage.id === device.id);
 

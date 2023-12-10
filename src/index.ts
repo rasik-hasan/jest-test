@@ -19,9 +19,12 @@ async function main() {
 
   try {
     const outages = await getOutages(API_URL, header);
+
     const siteInfos = await getSiteInfo(API_URL, header, siteId);
+
     const timeFiltered = filterByTime(targetTime, outages);
     // console.log("timefiltered: ", timeFiltered);
+
     const deviceFiltered = filterById(timeFiltered, siteInfos.devices);
     // console.log("device filtered: ", deviceFiltered);
 
