@@ -79,8 +79,10 @@ export async function postSiteOutages(
         siteOutages,
         { headers: header }
       );
-      console.log("post status: ", res.status);
-      console.log("post res: ", res.data);
+
+      // console.log("post res: ", res);
+      // console.log("post status: ", res.status);
+      // console.log("post res: ", res.data);
 
       return res;
     } catch (error) {
