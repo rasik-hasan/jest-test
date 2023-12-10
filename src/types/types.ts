@@ -1,10 +1,10 @@
-export interface IOutages {
+export interface IOutage {
   id: string;
   begin: string;
   end: string;
 }
 
-export interface IDevices {
+export interface IDevice {
   id: string;
   name: string;
 }
@@ -12,7 +12,7 @@ export interface IDevices {
 export interface ISiteInfo {
   id: string;
   name: string;
-  devices: [IDevices];
+  devices: IDevice[];
 }
 
 export interface ISiteOutage {

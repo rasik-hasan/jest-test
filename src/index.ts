@@ -2,7 +2,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import { API_KEY, API_URL } from "../src/config/config";
-import { IOutages, ISiteInfo } from "../src/types/types";
 import { getOutages, getSiteInfo, postSiteOutages } from "./api/api";
 import {
   attachDeviceNameToOutage,
@@ -19,19 +18,21 @@ async function main() {
   const siteId = "norwich-pear-tree";
 
   try {
-    const outages: IOutages[] = await getOutages(API_URL, header);
-    const siteInfos: ISiteInfo = await getSiteInfo(API_URL, header, siteId);
-    console.log("siteinfos: ", siteInfos);
+    const outages = await getOutages(API_URL, header);
+
+    const siteInfos = await getSiteInfo(API_URL, header, siteId);
+
     const timeFiltered = filterByTime(targetTime, outages);
     // console.log("timefiltered: ", timeFiltered);
+
     const deviceFiltered = filterById(timeFiltered, siteInfos.devices);
-    console.log("device filtered: ", deviceFiltered);
+    // console.log("device filtered: ", deviceFiltered);
 
     const nameAttached = attachDeviceNameToOutage(
       deviceFiltered,
       siteInfos.devices
     );
-    console.log("attach: ", nameAttached);
+    // console.log("attach: ", nameAttached);
 
     postSiteOutages(API_URL, header, nameAttached, siteId);
   } catch (error) {
