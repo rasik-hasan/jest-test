@@ -1,8 +1,11 @@
 import axios from "axios";
-import { ISiteOutage } from "../types/types";
+import { IOutage, ISiteInfo, ISiteOutage } from "../types/types";
 
 // 1. `GET /outages` which returns all outages in our system
-export async function getOutages(API_URL: string, header: {}) {
+export async function getOutages(
+  API_URL: string,
+  header: {}
+): Promise<IOutage[]> {
   const tryMax = 3;
   const baseDelay = 1000;
   let tryCounter = 0;
@@ -16,13 +19,12 @@ export async function getOutages(API_URL: string, header: {}) {
 
       return res.data;
     } catch (error) {
-      console.log("Error: ", error, "CurrentTry:", tryCounter);
+      console.log("Error in getOutages", "trying again");
 
       const delay = Math.pow(2, tryCounter) * baseDelay;
+      tryCounter++;
 
       await new Promise((resolve) => setTimeout(resolve, delay));
-
-      tryCounter++;
     }
   }
 
@@ -34,7 +36,7 @@ export async function getSiteInfo(
   API_URL: string,
   header: {},
   siteId: string
-): Promise<any> {
+): Promise<ISiteInfo> {
   const tryMax = 3;
   const baseDelay = 1000;
   let tryCounter = 0;
@@ -47,7 +49,7 @@ export async function getSiteInfo(
 
       return res.data;
     } catch (error) {
-      console.log("Error: ", error, "CurrentTry:", tryCounter);
+      console.log("Error in GetSiteInfo", "trying again");
 
       const delay = Math.pow(2, tryCounter) * baseDelay;
 
@@ -83,7 +85,7 @@ export async function postSiteOutages(
 
       return res;
     } catch (error) {
-      console.log("Error: ", error, "CurrentTry:", tryCounter);
+      console.log("Error in PostSiteOutages ", "trying again");
 
       const delay = Math.pow(2, tryCounter) * baseDelay;
 
