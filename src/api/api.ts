@@ -15,14 +15,13 @@ export async function getOutages(
       const res = await axios.get(API_URL + "/outages", {
         headers: header,
       });
-      // console.log("Res:", res.data);
 
       return res.data;
     } catch (error) {
       console.log("Error in getOutages", "trying again");
 
-      const delay = Math.pow(2, tryCounter) * baseDelay;
       tryCounter++;
+      const delay = Math.pow(2, tryCounter) * baseDelay;
 
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
