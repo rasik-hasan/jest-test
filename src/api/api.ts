@@ -7,7 +7,7 @@ export async function getOutages(
   header: {}
 ): Promise<IOutage[]> {
   const tryMax = 3;
-  const baseDelay = 1000;
+  const delayMultiplier = 500;
   let tryCounter = 0;
 
   while (tryCounter < tryMax) {
@@ -21,7 +21,7 @@ export async function getOutages(
       console.log("Error in getOutages", "trying again");
 
       tryCounter++;
-      const delay = Math.pow(2, tryCounter) * baseDelay;
+      const delay = Math.pow(2, tryCounter) * delayMultiplier;
 
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
@@ -37,7 +37,7 @@ export async function getSiteInfo(
   siteId: string
 ): Promise<ISiteInfo> {
   const tryMax = 3;
-  const baseDelay = 1000;
+  const delayMultiplier = 500;
   let tryCounter = 0;
 
   while (tryCounter < tryMax) {
@@ -50,7 +50,7 @@ export async function getSiteInfo(
     } catch (error) {
       console.log("Error in GetSiteInfo", "trying again");
 
-      const delay = Math.pow(2, tryCounter) * baseDelay;
+      const delay = Math.pow(2, tryCounter) * delayMultiplier;
 
       await new Promise((resolve) => setTimeout(resolve, delay));
 
@@ -69,7 +69,7 @@ export async function postSiteOutages(
   siteId: string
 ) {
   const tryMax = 3;
-  const baseDelay = 1000;
+  const delayMultiplier = 500;
   let tryCounter = 0;
 
   while (tryCounter < tryMax) {
@@ -81,14 +81,14 @@ export async function postSiteOutages(
       );
 
       // console.log("post res: ", res);
-      // console.log("post status: ", res.status);
-      // console.log("post res: ", res.data);
+      console.log("post status: ", res.status);
+      console.log("post res: ", res.data);
 
       return res;
     } catch (error) {
       console.log("Error in PostSiteOutages ", "trying again");
 
-      const delay = Math.pow(2, tryCounter) * baseDelay;
+      const delay = Math.pow(2, tryCounter) * delayMultiplier;
 
       await new Promise((resolve) => setTimeout(resolve, delay));
 
